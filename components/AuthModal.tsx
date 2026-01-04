@@ -13,7 +13,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => 
   const [error, setError] = useState(false);
 
   // Get password from Env Var, fallback to 'admin123' if not set
-  const ADMIN_PASSWORD = (import.meta as any).env.VITE_ADMIN_PASSWORD || 'admin123';
+  // Safely access import.meta.env with optional chaining to prevent crashes if env is undefined
+  const ADMIN_PASSWORD = (import.meta as any).env?.VITE_ADMIN_PASSWORD || 'admin123';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
